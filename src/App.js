@@ -7,8 +7,8 @@ function App() {
 
   const [select1, setSelect1] = useState("EUR");
   const [select2, setSelect2] = useState("USD");
-  const [input1, setInput1] = useState();
-  const [input2, setInput2] = useState();
+  const [input1, setInput1] = useState(0);
+  const [input2, setInput2] = useState(0);
 
   const [allKeys, setAllKeys] = useState([]);
 
@@ -28,7 +28,7 @@ function App() {
 
   let valueKeys = Object.keys(allKeys);
   const handleClickConverter = () => {
-    setSelect1(select1);
+    setSelect1(select2);
     setSelect2(select1);
     setInput1(input2);
     setInput2(input1);
@@ -36,28 +36,28 @@ function App() {
 
   function handleInput1Change(input1) {
     setInput2(
-      ((input1 * allKeys[select2]?.Value) / allKeys[select1]?.Value).toFixed(2)
+      ((input1 * allKeys[select1]?.Value) / allKeys[select2]?.Value).toFixed(2)
     );
     setInput1(input1);
   }
 
   function handleSelect1Change(select1) {
     setInput2(
-      ((input1 * allKeys[select2]?.Value) / allKeys[select1]?.Value).toFixed(2)
+      ((input1 * allKeys[select1]?.Value) / allKeys[select2]?.Value).toFixed(2)
     );
     setSelect1(select1);
   }
 
   function handleInput2Change(input2) {
     setInput1(
-      ((input2 * allKeys[select1]?.Value) / allKeys[select2]?.Value).toFixed(2)
+      ((input2 * allKeys[select2]?.Value) / allKeys[select1]?.Value).toFixed(2)
     );
     setInput2(input2);
   }
 
   function handleSelect2Change(select2) {
     setInput1(
-      ((input2 * allKeys[select1]?.Value) / allKeys[select2]?.Value).toFixed(2)
+      ((input2 * allKeys[select2]?.Value) / allKeys[select1]?.Value).toFixed(2)
     );
     setSelect2(select2);
   }
