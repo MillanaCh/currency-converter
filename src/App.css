@@ -49,10 +49,11 @@
   height: 120px;
   border-radius: 12px;
   background-color: var(--main-color);
+}
+.flex-article {
   display: flex;
   justify-content: space-between;
 }
-
 /* Select Option Style */
 .select {
   width: 100px;
