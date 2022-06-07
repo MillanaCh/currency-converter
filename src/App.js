@@ -5,6 +5,8 @@ import { top } from "react-icons-kit/iconic/top";
 import { bottom } from "react-icons-kit/iconic/bottom";
 import { thickRight } from "react-icons-kit/iconic/thickRight";
 import { ic_autorenew } from "react-icons-kit/md/ic_autorenew";
+import Select from "react-select";
+
 function App() {
   const [allData, setAllData] = useState([]);
 
@@ -97,7 +99,10 @@ function App() {
   // console.log(allKeys[select2]?.Previous);
   // console.log(allKeys[select1]?.Value);
   // console.log(allKeys[select2]?.Previous);
+  let currencyType = valueKeys.map((el) => ({ label: el, value: el }));
 
+  console.log(select1, "select1");
+  console.log(select2, "select2");
   return (
     <div className="App">
       <h1 className="header">Currency Converter</h1>
@@ -128,15 +133,11 @@ function App() {
               {allKeys[select1]?.Name}
             </h3>
             <div className="flex-article">
-              <select
-                value={select1}
+              <Select
+                options={currencyType}
                 className="select"
-                onChange={(e) => handleSelect1Change(e.target.value)}
-              >
-                {valueKeys.map((el, index) => (
-                  <option key={index}>{el}</option>
-                ))}
-              </select>
+                onChange={(opt) => handleSelect1Change(opt.label)}
+              />
               <input
                 type="number"
                 value={input1}
