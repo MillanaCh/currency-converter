@@ -6,17 +6,19 @@
   box-sizing: border-box;
 }
 :root {
-  --main-color: rgb(183, 196, 208);
+  --main-color: #e4e2e2;
   /* --main-color: ; */
   --secondary-color: rgb(127, 156, 184);
 }
 .App {
-  height: 90vh;
+  height: 100vh;
+  background-color: #015a8b;
+  /* background: linear-gradient(#e66465, #9198e5);; */
 }
 .header {
+  padding-top: 20px;
   text-align: center;
-  margin-top: 30px;
-  color: rgb(104, 128, 151);
+  color: whitesmoke;
   font-family: "Koulen", cursive;
 }
 
@@ -24,9 +26,10 @@
   margin: 4% 0 0 25%;
 }
 .currency {
+  color: black;
   align-self: center;
   padding: 5% 5% 5% 5%;
-  width: 65%;
+  width: 70%;
   background-color: var(--main-color);
   border-radius: 12px;
   display: flex;
@@ -34,12 +37,11 @@
   align-items: center;
 }
 .currency h3 {
-  background-color: white;
   padding: 7px;
   border-radius: 7px;
 }
 .converter {
-  margin-top: 10%;
+  margin: 10% 0 0 20px;
 
   width: 65%;
   display: flex;
@@ -56,7 +58,7 @@
 .article {
   padding: 5% 5% 5% 5%;
   width: 60%;
-  height: 120px;
+  height: 130px;
   border-radius: 12px;
   background-color: var(--main-color);
 }

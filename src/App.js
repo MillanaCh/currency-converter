@@ -93,8 +93,10 @@ function App() {
   }
   checkPrevious();
   // console.log(difference);
-  // console.log(allKeys[select1]);
-  // console.log(allKeys[select2]);
+  // console.log(allKeys[select1]?.Value);
+  // console.log(allKeys[select2]?.Previous);
+  // console.log(allKeys[select1]?.Value);
+  // console.log(allKeys[select2]?.Previous);
 
   return (
     <div className="App">
@@ -102,7 +104,7 @@ function App() {
       <div className="container">
         <section className="currency">
           <h3>1 {select1}</h3>
-          <div style={{ color: "white", margin: "0 20px 0 20px" }}>
+          <div style={{ color: "#015a8b", margin: "0 20px 0 20px" }}>
             <Icon size={35} icon={thickRight} />
           </div>
           <h3>
@@ -122,7 +124,9 @@ function App() {
         </section>
         <section className="converter">
           <article className="article">
-            <h3 style={{ padding: "0 0 8px 5px" }}>{allKeys[select1]?.Name}</h3>
+            <h3 style={{ padding: "0 0 8px 5px", color: "#035b8c" }}>
+              {allKeys[select1]?.Name}
+            </h3>
             <div className="flex-article">
               <select
                 value={select1}
@@ -142,12 +146,14 @@ function App() {
             </div>
           </article>
           <button className="btn" onClick={() => handleClickConverter()}>
-            <div style={{ color: "rgb(127, 156, 184)" }}>
+            <div style={{ color: "whitesmoke" }}>
               <Icon size={50} icon={ic_autorenew} />
             </div>
           </button>
           <article className="article">
-            <h3 style={{ padding: "0 0 8px 5px" }}>{allKeys[select2]?.Name}</h3>
+            <h3 style={{ padding: "0 0 8px 5px", color: "#035b8c" }}>
+              {allKeys[select2]?.Name}
+            </h3>
             <div className="flex-article">
               <select
                 value={select2}
