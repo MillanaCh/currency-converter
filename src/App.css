@@ -7,6 +7,7 @@
 }
 :root {
   --main-color: rgb(183, 196, 208);
+  /* --main-color: ; */
   --secondary-color: rgb(127, 156, 184);
 }
 .App {
@@ -18,8 +19,9 @@
   color: rgb(104, 128, 151);
   font-family: "Koulen", cursive;
 }
+
 .container {
-  margin: 7% 0 0 25%;
+  margin: 4% 0 0 25%;
 }
 .currency {
   align-self: center;
@@ -27,6 +29,14 @@
   width: 65%;
   background-color: var(--main-color);
   border-radius: 12px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.currency h3 {
+  background-color: white;
+  padding: 7px;
+  border-radius: 7px;
 }
 .converter {
   margin-top: 10%;
@@ -45,7 +55,7 @@
 }
 .article {
   padding: 5% 5% 5% 5%;
-  width: 50%;
+  width: 60%;
   height: 120px;
   border-radius: 12px;
   background-color: var(--main-color);
