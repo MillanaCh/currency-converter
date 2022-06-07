@@ -31,8 +31,7 @@ function App() {
     fetchData();
   }, []);
 
-  let valueKeys = Object.keys(allKeys);
-
+  const valueKeys = Object.keys(allKeys);
   let currencyType = valueKeys.map((el) => ({ label: el, value: el }));
 
   const handleClickConverter = () => {
@@ -44,8 +43,9 @@ function App() {
   function handleInput1Change(input1) {
     setInput2(
       (
-        ((input1 * allKeys[select1]?.Value) / allKeys[select2]?.Value) *
-        allKeys[select2]?.Nominal
+        (((input1 * allKeys[select1]?.Value) / allKeys[select2]?.Value) *
+          allKeys[select2]?.Nominal) /
+        allKeys[select1]?.Nominal
       ).toFixed(2)
     );
     setInput1(input1);
@@ -54,8 +54,9 @@ function App() {
   function handleSelect1Change(select1) {
     setInput2(
       (
-        ((input1 * allKeys[select1]?.Value) / allKeys[select2]?.Value) *
-        allKeys[select2]?.Nominal
+        (((input1 * allKeys[select1]?.Value) / allKeys[select2]?.Value) *
+          allKeys[select2]?.Nominal) /
+        allKeys[select1]?.Nominal
       ).toFixed(2)
     );
     setSelect1(select1);
@@ -64,19 +65,20 @@ function App() {
   function handleInput2Change(input2) {
     setInput1(
       (
-        ((input2 * allKeys[select2]?.Value) / allKeys[select1]?.Value) *
-        allKeys[select2]?.Nominal
+        (((input2 * allKeys[select2]?.Value) / allKeys[select1]?.Value) *
+          allKeys[select2]?.Nominal) /
+        allKeys[select1]?.Nominal
       ).toFixed(2)
     );
-
     setInput2(input2);
   }
 
   function handleSelect2Change(select2) {
     setInput2(
       (
-        ((input1 * allKeys[select2]?.Value) / allKeys[select1]?.Value) *
-        allKeys[select2]?.Nominal
+        (((input1 * allKeys[select2]?.Value) / allKeys[select1]?.Value) *
+          allKeys[select2]?.Nominal) /
+        allKeys[select1]?.Nominal
       ).toFixed(2)
     );
     setSelect2(select2);
@@ -96,11 +98,11 @@ function App() {
     difference = (currency - topFunction).toFixed(2);
   }
   checkPrevious();
-  // console.log(difference);
-  // console.log(allKeys[select1]?.Value);
-  // console.log(allKeys[select2]?.Previous);
-  // console.log(allKeys[select1]?.Value);
-  // console.log(allKeys[select2]?.Previous);
+  console.log(difference);
+  console.log(allKeys[select1]);
+  console.log(allKeys[select2]);
+  console.log(allKeys[select1]?.Previous, "prev");
+  console.log(allKeys[select2]?.Previous, "prev");
   return (
     <div className="App">
       <h1 className="header">Currency Converter</h1>
@@ -133,7 +135,6 @@ function App() {
             <div className="flex-article">
               <Select
                 value={{ value: select1, label: select1 }}
-                // defaultValue={select1}
                 options={currencyType}
                 className="select"
                 onChange={(opt) => handleSelect1Change(opt.label)}
@@ -158,7 +159,6 @@ function App() {
             <div className="flex-article">
               <Select
                 value={{ value: select1, label: select2 }}
-                // defaultValue={select2}
                 options={currencyType}
                 className="select"
                 onChange={(opt) => handleSelect2Change(opt.label)}
