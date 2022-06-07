@@ -32,13 +32,15 @@ function App() {
   }, []);
 
   let valueKeys = Object.keys(allKeys);
+
+  let currencyType = valueKeys.map((el) => ({ label: el, value: el }));
+
   const handleClickConverter = () => {
     setSelect1(select2);
     setSelect2(select1);
     setInput1(input2);
     setInput2(input1);
   };
-
   function handleInput1Change(input1) {
     setInput2(
       (
@@ -99,10 +101,6 @@ function App() {
   // console.log(allKeys[select2]?.Previous);
   // console.log(allKeys[select1]?.Value);
   // console.log(allKeys[select2]?.Previous);
-  let currencyType = valueKeys.map((el) => ({ label: el, value: el }));
-
-  console.log(select1, "select1");
-  console.log(select2, "select2");
   return (
     <div className="App">
       <h1 className="header">Currency Converter</h1>
@@ -134,6 +132,8 @@ function App() {
             </h3>
             <div className="flex-article">
               <Select
+                value={{ value: select1, label: select1 }}
+                // defaultValue={select1}
                 options={currencyType}
                 className="select"
                 onChange={(opt) => handleSelect1Change(opt.label)}
@@ -156,15 +156,13 @@ function App() {
               {allKeys[select2]?.Name}
             </h3>
             <div className="flex-article">
-              <select
-                value={select2}
+              <Select
+                value={{ value: select1, label: select2 }}
+                // defaultValue={select2}
+                options={currencyType}
                 className="select"
-                onChange={(e) => handleSelect2Change(e.target.value)}
-              >
-                {valueKeys.map((el, index) => (
-                  <option key={index}>{el}</option>
-                ))}
-              </select>
+                onChange={(opt) => handleSelect2Change(opt.label)}
+              />
               <input
                 type="number"
                 value={input2}
