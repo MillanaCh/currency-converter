@@ -98,11 +98,7 @@ export default function MainPageCharts() {
     difference = (currency - topFunction).toFixed(2);
   }
   checkPrevious();
-  // console.log(difference);
-  // console.log(allKeys[select1]);
-  // console.log(allKeys[select2]);
-  // console.log(allKeys[select1]?.Previous, "prev");
-  // console.log(allKeys[select2]?.Previous, "prev");
+
   return (
     <div className="mainPageCharts">
       <section className="currency">
@@ -131,12 +127,12 @@ export default function MainPageCharts() {
             </td>
             <div>
               {difference >= 0 ? (
-                <h3 style={{ color: "#3f893c" }}>
+                <h3 style={{ color: "#3f893c", marginLeft: "20px" }}>
                   <Icon size={30} icon={top} />
                   {difference}
                 </h3>
               ) : (
-                <h3 style={{ color: "#ea4729" }}>
+                <h3 style={{ color: "#ea4729", marginLeft: "20px" }}>
                   <Icon size={30} icon={bottom} />
                   {difference}
                 </h3>
@@ -147,9 +143,9 @@ export default function MainPageCharts() {
       </section>
       <section className="converter">
         <article className="article">
-          <p style={{ padding: "0 0 8px 5px", color: "#035b8c" }}>
+          <h3 style={{ padding: "0 0 8px 5px", color: "#035b8c" }}>
             {allKeys[select1]?.Name}
-          </p>
+          </h3>
           <div className="flex-article">
             <Select
               value={{ value: select1, label: select1 }}
@@ -190,7 +186,6 @@ export default function MainPageCharts() {
           </div>
         </article>
       </section>
-      
     </div>
   );
 }
