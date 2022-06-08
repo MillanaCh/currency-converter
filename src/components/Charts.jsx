@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { ContextComponent } from "../context/CurrencyContext";
 import { Icon } from "react-icons-kit";
 import { caretUp } from "react-icons-kit/fa/caretUp";
 import { caretDown } from "react-icons-kit/fa/caretDown";
+import { arrowSwap } from "react-icons-kit/ionicons/arrowSwap";
 
 export default function MainPageCharts() {
   const { allKeys } = useContext(ContextComponent);
 
+  const [select1, setSelect1] = useState();
+  const [select2, setSelect2] = useState();
   let differenceUsdEur;
   function checkUsdEur() {
     let UsdEurValue = (
@@ -100,14 +103,28 @@ export default function MainPageCharts() {
       <table className="charts-table">
         <thead>
           <tr>
-            <th>Currency</th>
+            <th>From</th>
+            <th></th>
+            <th>To</th>
             <th>Rate</th>
             <th>Change</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>USD / EUR</td>
+            <td>1 USD</td>
+            <td style={{ border: "none" }}>
+              <div
+                style={{
+                  color: "#0a146d",
+                  marginLeft: "20px",
+                  textAlign: "center",
+                }}
+              >
+                <Icon size={30} icon={arrowSwap} />
+              </div>
+            </td>
+            <td>1 EUR</td>
             <td>{differenceUsdEur}</td>
             <td>
               {differenceUsdEur >= 0 ? (
@@ -122,7 +139,19 @@ export default function MainPageCharts() {
             </td>
           </tr>
           <tr>
-            <td>GBP / EUR</td>
+            <td>1 GBP</td>
+            <td style={{ border: "none" }}>
+              <div
+                style={{
+                  color: "#0a146d",
+                  marginLeft: "20px",
+                  textAlign: "center",
+                }}
+              >
+                <Icon size={30} icon={arrowSwap} />
+              </div>
+            </td>
+            <td>1 EUR</td>
             <td>{differenceGbpEur}</td>
             <td>
               {differenceGbpEur >= 0 ? (
@@ -137,7 +166,19 @@ export default function MainPageCharts() {
             </td>
           </tr>
           <tr>
-            <td>USD / JPY</td>
+            <td>1 USD</td>
+            <td style={{ border: "none" }}>
+              <div
+                style={{
+                  color: "#0a146d",
+                  marginLeft: "20px",
+                  textAlign: "center",
+                }}
+              >
+                <Icon size={30} icon={arrowSwap} />
+              </div>
+            </td>
+            <td>1 JPY</td>
             <td>{differenceUsdJpy}</td>
             <td>
               {differenceUsdJpy >= 0 ? (
@@ -152,7 +193,19 @@ export default function MainPageCharts() {
             </td>
           </tr>
           <tr>
-            <td>GBP / USD</td>
+            <td>1 GBP</td>
+            <td style={{ border: "none" }}>
+              <div
+                style={{
+                  color: "#0a146d",
+                  marginLeft: "20px",
+                  textAlign: "center",
+                }}
+              >
+                <Icon size={30} icon={arrowSwap} />
+              </div>
+            </td>
+            <td>1 USD</td>
             <td>{differenceGbpUsd}</td>
             <td>
               {differenceGbpUsd >= 0 ? (
@@ -167,7 +220,19 @@ export default function MainPageCharts() {
             </td>
           </tr>
           <tr>
-            <td>USD / KGS</td>
+            <td>1 USD</td>
+            <td style={{ border: "none" }}>
+              <div
+                style={{
+                  color: "#0a146d",
+                  marginLeft: "20px",
+                  textAlign: "center",
+                }}
+              >
+                <Icon size={30} icon={arrowSwap} />
+              </div>
+            </td>
+            <td>1 KGS</td>
             <td>{differenceUsdKgs}</td>
             <td>
               {differenceUsdKgs >= 0 ? (
@@ -182,7 +247,19 @@ export default function MainPageCharts() {
             </td>
           </tr>
           <tr>
-            <td>USD / KZT</td>
+            <td>1 USD</td>
+            <td style={{ border: "none" }}>
+              <div
+                style={{
+                  color: "#0a146d",
+                  marginLeft: "20px",
+                  textAlign: "center",
+                }}
+              >
+                <Icon size={30} icon={arrowSwap} />
+              </div>
+            </td>
+            <td>1 KZT</td>
             <td>{differenceUsdKzt}</td>
             <td>
               {differenceUsdKzt >= 0 ? (
