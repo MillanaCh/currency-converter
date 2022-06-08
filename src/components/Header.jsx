@@ -1,6 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Outlet } from "react-router-dom";
+import { Icon } from "react-icons-kit";
+import { ic_language } from "react-icons-kit/md/ic_language";
+import { ic_table_view_outline } from "react-icons-kit/md/ic_table_view_outline";
+
 export default function Header() {
   return (
     <>
@@ -9,15 +13,14 @@ export default function Header() {
       </div>
       <div className="all-layout">
         <header className="header-layout">
-          <Link to="/" className="link">
+          <NavLink to="/" className="link">
+            <Icon size={20} icon={ic_language} />
             Charts
-          </Link>
-          <Link to="/convert" className="link">
+          </NavLink>
+          <NavLink to="/convert" className="link">
+            <Icon size={20} icon={ic_table_view_outline} />
             Convert
-          </Link>
-          <Link to="/currency" className="link">
-            Currency
-          </Link>
+          </NavLink>
         </header>
         <main className="main-container">
           <Outlet />

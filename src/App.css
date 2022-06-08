@@ -17,12 +17,12 @@
   height: 90vh;
 }
 
-/* Main Page */
-.mainPageCharts {
+/* Convert Page */
+.pageConvert {
   height: 90vh;
 }
 
-/* Main Page Currency */
+/* Convert Page Currency */
 .currency {
   color: rgb(21, 20, 20);
   align-self: center;
@@ -49,7 +49,7 @@
   font-family: "Montserrat", sans-serif;
 }
 
-/* Main Page Converter */
+/* Convert Page Converter */
 .converter {
   margin: 5% 0 0 14%;
   padding: 5% 3% 5% 3%;
@@ -114,9 +114,17 @@
   padding: 20px 15.3% 20px 13.24%;
   background-color: #f0f5f9;
 }
-.link:hover {
+
+.active {
   background-color: white;
 }
+/* .link-toggle {
+  text-decoration: none;
+  color: #0a146d;
+  border: none;
+  padding: 20px 15.3% 20px 13.24%;
+  background-color: #ffffff;
+} */
 .all-layout {
   width: 80%;
   margin-left: 130px;
@@ -127,4 +135,31 @@
   height: 35vh;
 }
 
+/* Charts Page */
 
+.chartPageMain {
+  height: 90vh;
+  padding: 5% 5% 5% 5%;
+}
+.charts-table {
+  margin-top: 30px;
+  width: 100%;
+}
+.charts-table td {
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  padding: 10px;
+  width: 30%;
+}
+.charts-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  color: black;
+  font-family: "Montserrat", sans-serif;
+}
+/* Currency Page*/
+.currencyPage {
+  height: 90vh;
+  padding: 5% 5% 5% 5%;
+}
