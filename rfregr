@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState } from "react";
+import { useContext } from "react";
 import { ContextComponent } from "../context/CurrencyContext";
 import { Icon } from "react-icons-kit";
 import { caretUp } from "react-icons-kit/fa/caretUp";
@@ -6,29 +7,40 @@ import { caretDown } from "react-icons-kit/fa/caretDown";
 import { arrowSwap } from "react-icons-kit/ionicons/arrowSwap";
 
 export default function MainPageCharts() {
-  const { obj } = useContext(ContextComponent);
+  const { allKeys } = useContext(ContextComponent);
+  const [data, setData] = useState([
+    { first: "USD", second: "EUR" },
+    { first: "GBP", second: "EUR" },
+    { first: "USD", second: "JPY" },
+    { first: "GBP", second: "USD" },
+    { first: "USD", second: "KGS" },
+    { first: "USD", second: "KZT" },
+  ]);
 
-  const [data, setData] = useState();
+  const valueKeys = Object.keys(allKeys);
+  console.log(valueKeys);
 
-  useEffect(() => {
-    setData(obj);
-  }, [obj]);
+  // Up method
+  let difference;
 
+  function checkBetween(el) {
+    let value = (
+      (allKeys[el.first]?.Value / allKeys[el.second]?.Value) *
+      allKeys[el.second]?.Nominal
+    ).toFixed(2);
+    let prev = (
+      (allKeys[el.first]?.Previous / allKeys[el.second]?.Previous) *
+      allKeys[el.second]?.Nominal
+    ).toFixed(2);
+    difference = (prev - value).toFixed(2);
+    return difference;
+  }
   const handleClick = (index) => {
+    let firstObj = data[index]?.first;
     const newData = [...data];
-    let fromObj = newData[index]?.from;
-    newData[index] = {
-      from: newData[index]?.to,
-      to: fromObj,
-      previous: newData[index]?.Previous,
-      value: (1 / newData[index]?.value).toFixed(4),
-      diff: (1 / newData[index]?.previous - 1 / obj[index]?.value).toFixed(4),
-    };
-    console.log(newData[index]?.previous);
+    newData[index] = { first: data[index]?.second, second: firstObj };
     setData(newData);
   };
-
-  // console.log(data);
 
   return (
     <main className="chartPageMain">
@@ -47,8 +59,8 @@ export default function MainPageCharts() {
         </thead>
         <tbody>
           {data?.map((el, index) => (
-            <tr key={index}>
-              <td className="nameOfCurrency">1 {el.from}</td>
+            <tr>
+              <td>1 {el.first}</td>
               <td style={{ border: "none" }}>
                 <div
                   style={{
@@ -61,12 +73,10 @@ export default function MainPageCharts() {
                   <Icon size={30} icon={arrowSwap} />
                 </div>
               </td>
-              <td className="valueOfCurrency">
-                {el?.value} {el?.to}
-              </td>
-              <td className="valueOfCurrency">{el?.diff}</td>
+              <td>1 {el.second}</td>
+              <td>{checkBetween(el)}</td>
               <td>
-                {el?.value >= 0 ? (
+                {difference >= 0 ? (
                   <h3 style={{ color: "#3f893c", marginLeft: "20px" }}>
                     <Icon size={30} icon={caretUp} />
                   </h3>

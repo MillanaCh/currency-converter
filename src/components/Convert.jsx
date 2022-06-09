@@ -9,14 +9,13 @@ import Select from "react-select";
 import { ContextComponent } from "../context/CurrencyContext";
 
 export default function Convert() {
-  const { allKeys } = useContext(ContextComponent);
+  const { allKeys, valueKeys } = useContext(ContextComponent);
 
   const [selectFrom, setSelectFrom] = useState("EUR");
   const [selectTo, setSelectTo] = useState("USD");
   const [inputFrom, setInputFrom] = useState(1);
   const [inputTo, setInputTo] = useState(1);
 
-  const valueKeys = Object.keys(allKeys);
   let currencyType = valueKeys.map((el) => ({ label: el, value: el }));
 
   const handleClickConverter = () => {

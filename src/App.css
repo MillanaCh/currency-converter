@@ -149,14 +149,23 @@
   border: 1px solid #ddd;
   border-radius: 7px;
   padding: 10px;
-  width: 20%;
+  width: 22.5%;
 }
 .charts-table th {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
+  text-align: center;
   color: black;
   font-family: "Montserrat", sans-serif;
+}
+.nameOfCurrency {
+  color: #0119c6;
+  font-weight: 700;
+  text-align: center;
+}
+.valueOfCurrency {
+  text-align: center;
+  font-weight: 700;
 }
 /* Currency Page*/
 .currencyPage {
