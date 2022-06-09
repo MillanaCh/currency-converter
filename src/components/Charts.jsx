@@ -17,6 +17,9 @@ export default function MainPageCharts() {
     { first: "USD", second: "KZT" },
   ]);
 
+  console.log(allKeys);
+
+  // Up method
   let difference;
 
   function checkBetween(el) {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState, useContext } from "react";
 import { Icon } from "react-icons-kit";
 import { top } from "react-icons-kit/iconic/top";
@@ -11,74 +11,81 @@ import { ContextComponent } from "../context/CurrencyContext";
 export default function Convert() {
   const { allKeys } = useContext(ContextComponent);
 
-  const [select1, setSelect1] = useState("EUR");
-  const [select2, setSelect2] = useState("USD");
-  const [input1, setInput1] = useState(0);
-  const [input2, setInput2] = useState(0);
+  const [selectFrom, setSelectFrom] = useState("EUR");
+  const [selectTo, setSelectTo] = useState("USD");
+  const [inputFrom, setInputFrom] = useState(1);
+  const [inputTo, setInputTo] = useState(1);
 
   const valueKeys = Object.keys(allKeys);
   let currencyType = valueKeys.map((el) => ({ label: el, value: el }));
 
   const handleClickConverter = () => {
-    setSelect1(select2);
-    setSelect2(select1);
-    setInput1(input2);
-    setInput2(input1);
+    setSelectFrom(selectTo);
+    setSelectTo(selectFrom);
+    setInputFrom(1);
+    setInputTo(
+      (
+        (((1 * allKeys[selectTo]?.Value) / allKeys[selectFrom]?.Value) *
+          allKeys[selectFrom]?.Nominal) /
+        allKeys[selectTo]?.Nominal
+      ).toFixed(2)
+    );
   };
-  function handleInput1Change(input1) {
-    setInput2(
+
+  function handleinputFromChange(inputFrom) {
+    setInputTo(
       (
-        (((input1 * allKeys[select1]?.Value) / allKeys[select2]?.Value) *
-          allKeys[select2]?.Nominal) /
-        allKeys[select1]?.Nominal
+        (((inputFrom * allKeys[selectFrom]?.Value) / allKeys[selectTo]?.Value) *
+          allKeys[selectTo]?.Nominal) /
+        allKeys[selectFrom]?.Nominal
       ).toFixed(2)
     );
-    setInput1(input1);
+    setInputFrom(inputFrom);
   }
 
-  function handleSelect1Change(select1) {
-    setInput2(
+  function handleselectFromChange(selectFrom) {
+    setInputTo(
       (
-        (((input1 * allKeys[select1]?.Value) / allKeys[select2]?.Value) *
-          allKeys[select2]?.Nominal) /
-        allKeys[select1]?.Nominal
+        (((inputFrom * allKeys[selectFrom]?.Value) / allKeys[selectTo]?.Value) *
+          allKeys[selectTo]?.Nominal) /
+        allKeys[selectFrom]?.Nominal
       ).toFixed(2)
     );
-    setSelect1(select1);
+    setSelectFrom(selectFrom);
   }
 
-  function handleInput2Change(input2) {
-    setInput1(
+  function handleinputToChange(inputTo) {
+    setInputFrom(
       (
-        (((input2 * allKeys[select2]?.Value) / allKeys[select1]?.Value) *
-          allKeys[select2]?.Nominal) /
-        allKeys[select1]?.Nominal
+        (((inputTo * allKeys[selectTo]?.Value) / allKeys[selectFrom]?.Value) *
+          allKeys[selectTo]?.Nominal) /
+        allKeys[selectFrom]?.Nominal
       ).toFixed(2)
     );
-    setInput2(input2);
+    setInputTo(inputTo);
   }
 
-  function handleSelect2Change(select2) {
-    setInput2(
+  function handleselectToChange(selectTo) {
+    setInputTo(
       (
-        (((input1 * allKeys[select2]?.Value) / allKeys[select1]?.Value) *
-          allKeys[select2]?.Nominal) /
-        allKeys[select1]?.Nominal
+        (((inputFrom * allKeys[selectTo]?.Value) / allKeys[selectFrom]?.Value) *
+          allKeys[selectTo]?.Nominal) /
+        allKeys[selectFrom]?.Nominal
       ).toFixed(2)
     );
-    setSelect2(select2);
+    setSelectTo(selectTo);
   }
 
   let topFunction = (
-    (allKeys[select1]?.Value / allKeys[select2]?.Value) *
-    allKeys[select2]?.Nominal
+    (allKeys[selectFrom]?.Value / allKeys[selectTo]?.Value) *
+    allKeys[selectTo]?.Nominal
   ).toFixed(2);
 
   let difference;
   function checkPrevious() {
     let currency = (
-      (allKeys[select1]?.Previous / allKeys[select2]?.Previous) *
-      allKeys[select2]?.Nominal
+      (allKeys[selectFrom]?.Previous / allKeys[selectTo]?.Previous) *
+      allKeys[selectTo]?.Nominal
     ).toFixed(2);
     difference = (currency - topFunction).toFixed(2);
   }
@@ -99,7 +106,7 @@ export default function Convert() {
           <tbody>
             <tr>
               <td>
-                1 {select1} ({allKeys[select1]?.Name})
+                1 {selectFrom} ({allKeys[selectFrom]?.Name})
               </td>
               <td style={{ border: "none" }}>
                 <div
@@ -113,7 +120,7 @@ export default function Convert() {
                 </div>
               </td>
               <td>
-                {topFunction} {select2} ({allKeys[select2]?.Name})
+                {topFunction} {selectTo} ({allKeys[selectTo]?.Name})
               </td>
               <td style={{ border: "none" }}>
                 {difference >= 0 ? (
@@ -135,20 +142,20 @@ export default function Convert() {
       <section className="converter">
         <article className="article">
           <h3 style={{ padding: "0 0 8px 5px", color: "#035b8c" }}>
-            {allKeys[select1]?.Name}
+            {allKeys[selectFrom]?.Name}
           </h3>
           <div className="flex-article">
             <Select
-              value={{ value: select1, label: select1 }}
+              value={{ value: selectFrom, label: selectFrom }}
               options={currencyType}
               className="select"
-              onChange={(opt) => handleSelect1Change(opt.label)}
+              onChange={(opt) => handleselectFromChange(opt.label)}
             />
             <input
               type="number"
-              value={input1}
+              value={inputFrom}
               className="input"
-              onChange={(e) => handleInput1Change(e.target.value)}
+              onChange={(e) => handleinputFromChange(e.target.value)}
             />
           </div>
         </article>
@@ -159,20 +166,20 @@ export default function Convert() {
         </button>
         <article className="article">
           <h3 style={{ padding: "0 0 8px 5px", color: "#035b8c" }}>
-            {allKeys[select2]?.Name}
+            {allKeys[selectTo]?.Name}
           </h3>
           <div className="flex-article">
             <Select
-              value={{ value: select1, label: select2 }}
+              value={{ value: selectFrom, label: selectTo }}
               options={currencyType}
               className="select"
-              onChange={(opt) => handleSelect2Change(opt.label)}
+              onChange={(opt) => handleselectToChange(opt.label)}
             />
             <input
-              type="number"
-              value={input2}
+              disabled
+              value={inputTo}
               className="input"
-              onChange={(e) => handleInput2Change(e.target.value)}
+              onChange={(e) => handleinputToChange(e.target.value)}
             />
           </div>
         </article>
