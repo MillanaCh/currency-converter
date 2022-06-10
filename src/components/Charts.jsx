@@ -20,11 +20,11 @@ export default function MainPageCharts() {
     newData[index] = {
       from: newData[index]?.to,
       to: fromObj,
-      previous: newData[index]?.Previous,
+      // previous: newData[index]?.previous,
       value: (1 / newData[index]?.value).toFixed(4),
-      diff: (1 / newData[index]?.previous - 1 / obj[index]?.value).toFixed(4),
+      diff: (1 / obj[index]?.previous - 1 / obj[index]?.value).toFixed(4),
     };
-    console.log(newData[index]?.previous);
+    console.log(newData[index]?.diff);
     setData(newData);
   };
 

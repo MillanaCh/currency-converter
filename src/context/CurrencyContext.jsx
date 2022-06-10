@@ -30,7 +30,7 @@ const ContextProvider = ({ children }) => {
       to: "RUB",
       value: (allKeys[el]?.Value).toFixed(4),
       previous: (allKeys[el]?.Previous).toFixed(4),
-      diff: ((allKeys[el]?.Previous) - (allKeys[el]?.Value)),
+      diff: (allKeys[el]?.Previous - allKeys[el]?.Value).toFixed(4),
     });
   });
 
