@@ -24,7 +24,6 @@ const ContextProvider = ({ children }) => {
   // Charts
   let obj = [];
   let mapping = valueKeys.map((el) => {
-    // let diff = (allKeys[el]?.Previous - allKeys[el]?.Value).toFixed(2);
     obj.push({
       from: el,
       to: "RUB",
