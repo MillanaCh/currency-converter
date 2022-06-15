@@ -36,14 +36,15 @@ export default function MainPageCharts() {
 
   const handlerOnChange = debounce((e) => {
     const filteredCartoons = data?.filter((el) => {
-      if (el.from.slice(0, e.target.value.length) === e.target.value) {
+      if (
+        el.from.slice(0, e.target.value.length) === e.target.value.toUpperCase()
+      ) {
         return el;
       }
     });
     setSearched(filteredCartoons);
     setLengthSearch(e.target.value.length);
   }, 500);
-
 
   useEffect(() => {
     handlerOnChange();

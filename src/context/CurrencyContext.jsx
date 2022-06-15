@@ -27,7 +27,7 @@ const ContextProvider = ({ children }) => {
     obj.push({
       from: el,
       to: "RUB",
-      value: (allKeys[el]?.Value).toFixed(4),
+      value: allKeys[el]?.Value,
       previous: (allKeys[el]?.Previous).toFixed(4),
       diff: (allKeys[el]?.Previous - allKeys[el]?.Value).toFixed(4),
     });

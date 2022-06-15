@@ -172,3 +172,10 @@
   height: 90vh;
   padding: 5% 5% 5% 5%;
 }
+.input-search {
+  width: 200px;
+  height: 35px;
+  border-radius: 8px;
+  padding: 8px;
+  border: 1px solid #121c71;
+}
