@@ -1,3 +1,4 @@
+import { add } from "lodash";
 import { createContext, useEffect, useState } from "react";
 
 export const ContextComponent = createContext();
@@ -23,13 +24,14 @@ const ContextProvider = ({ children }) => {
 
   // Charts
   let obj = [];
-  let mapping = valueKeys.map((el) => {
+  let mapping = valueKeys.forEach((el) => {
     obj.push({
       from: el,
       to: "RUB",
       value: allKeys[el]?.Value,
       previous: (allKeys[el]?.Previous).toFixed(4),
       diff: (allKeys[el]?.Previous - allKeys[el]?.Value).toFixed(4),
+      ID: allKeys[el]?.ID,
     });
   });
 

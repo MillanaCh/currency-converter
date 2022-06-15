@@ -18,19 +18,25 @@ export default function MainPageCharts() {
     setData(obj);
   }, [obj]);
 
-  const handleClick = (index) => {
+  const handleClick = (id) => {
     const newData = [...data];
-    let fromObj = newData[index]?.from;
+    const indexOf = newData.findIndex((elem) => {
+      return elem.ID === id;
+    });
+    let fromObj = newData[indexOf]?.from;
 
-    newData[index] = {
-      from: newData[index]?.to,
+    newData[indexOf] = {
+      from: newData[indexOf]?.to,
       to: fromObj,
-      previous: 1 / newData[index]?.previous,
-      value: (1 / newData[index]?.value).toFixed(4),
-      diff: (1 / newData[index]?.previous - 1 / newData[index]?.value).toFixed(
-        4
-      ),
+      previous: 1 / newData[indexOf]?.previous,
+      value: (1 / newData[indexOf]?.value).toFixed(4),
+      diff: (
+        1 / newData[indexOf]?.previous -
+        1 / newData[indexOf]?.value
+      ).toFixed(4),
+      ID: newData[indexOf]?.ID,
     };
+    setSearched([newData[indexOf]]);
     setData(newData);
   };
 
@@ -82,7 +88,7 @@ export default function MainPageCharts() {
                       marginLeft: "20px",
                       textAlign: "center",
                     }}
-                    onClick={() => handleClick(index)}
+                    onClick={() => handleClick(el.ID)}
                   >
                     <Icon size={30} icon={arrowSwap} />
                   </div>
@@ -117,7 +123,7 @@ export default function MainPageCharts() {
                       marginLeft: "20px",
                       textAlign: "center",
                     }}
-                    onClick={() => handleClick(index)}
+                    onClick={() => handleClick(el.ID)}
                   >
                     <Icon size={30} icon={arrowSwap} />
                   </div>
